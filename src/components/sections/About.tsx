@@ -28,7 +28,7 @@ export default function About() {
         <Link
           href="/Talent_Nyota_Resume.pdf"
           target="_blank"
-          className="mt-6 inline-block rounded-lg bg-surge px-5 py-2 font-medium text-black transition hover:scale-105 hover:shadow-lg"
+          className="mt-6 inline-block rounded-lg bg-surge px-5 py-2 font-medium text-white transition hover:scale-105 hover:shadow-lg"
         >
           Download Resume ↗
         </Link>
