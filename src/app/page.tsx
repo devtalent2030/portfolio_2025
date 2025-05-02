@@ -1,4 +1,5 @@
 import Hero from '../components/sections/Hero'; // Top-of-page intro section with animated background and CTA
+import About from '../components/sections/About'; // About Me section with MDX and timeline
 
 export default function Home() {
   console.log('Hero default export typeof =', typeof Hero);
@@ -11,6 +12,13 @@ export default function Home() {
         - Status: Fully styled and animated using Tailwind + Framer Motion
       */}
       <Hero />
+
+      {/* 
+        ABOUT SECTION 
+        - Renders prose from content/about.mdx
+        - Includes dynamic CareerTimeline showing key milestones
+      */}
+      <About />
 
       {/* 
         SECTION PLACEHOLDERS 
