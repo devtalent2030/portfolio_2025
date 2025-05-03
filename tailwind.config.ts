@@ -1,4 +1,5 @@
 import type { Config } from 'tailwindcss';
+import plugin from 'tailwindcss/plugin';
 
 const config: Config = {
   content: ['./src/**/*.{ts,tsx,mdx}'],
@@ -6,12 +7,27 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        surge: '#00FFA3',     // Surge Green
-        indigo: '#6366F1',    // Indigo accent
+        surge : 'var(--accent)',
+        indigo: 'var(--accent-hover)',
+        skin: {
+          bg : 'var(--background)',
+          fg : 'var(--foreground)',
+          muted: 'var(--muted)',
+        },
       },
     },
   },
-  plugins: [],
+  plugins: [
+    require('@tailwindcss/typography'),
+    plugin(function ({ addBase }) {
+      addBase({
+        body: {
+          background: 'var(--background)',
+          color: 'var(--foreground)',
+        },
+      });
+    }),
+  ],
 };
 
 export default config;

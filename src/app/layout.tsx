@@ -1,4 +1,4 @@
-import './globals.css';
+import './globals.css'  
 import { ReactNode } from 'react';
 import { ThemeProvider } from 'next-themes';
 import Navbar from '@/components/Navbar';

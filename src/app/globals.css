@@ -1,26 +1,38 @@
 @import "tailwindcss";
 
+/* === Neutral Palette =========================================== */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background : #F7F9FC;
+  --foreground : #111827;
+  --muted      : #6B7280;
+
+  --accent       : #00FFA3;  /* Surge Green */
+  --accent-hover : #6366F1;  /* Indigo */
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+/* Controlled by next-themes 'dark' class */
+html.dark {
+  --background : #0B0F19;
+  --foreground : #E5E7EB;
+  --muted      : #9CA3AF;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
+/* === Global Resets ============================================= */
 body {
-  background: var(--background);
+  background   : var(--background);
+  color        : var(--foreground);
+  font-family  : Arial, Helvetica, sans-serif;
+}
+
+/* === Accent links & buttons === */
+a {
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  transition: color .15s ease;
+}
+a:hover {
+  color: var(--accent);
+}
+button:hover,
+button:focus {
+  outline-color: var(--accent-hover);
 }
