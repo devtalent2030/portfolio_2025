@@ -36,3 +36,33 @@ button:hover,
 button:focus {
   outline-color: var(--accent-hover);
 }
+
+.neon-frame::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 2px;
+  background: linear-gradient(135deg,
+              #7c3aed, #38bdf8, #14b8a6, #f472b6, #facc15);
+  background-size: 300% 300%;
+
+  /* --- mask definitions (vendor + standard) --- */
+  -webkit-mask:
+          linear-gradient(#000 0 0) content-box,
+          linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask:
+          linear-gradient(#000 0 0) content-box,
+          linear-gradient(#000 0 0);
+  mask-composite: exclude;
+
+  opacity: 0;
+  transition: opacity .4s ease, background-position 6s linear;
+}
+
+.neon-frame:hover::before {
+  opacity: 1;
+  background-position: 100% 0;
+}
+

@@ -1,6 +1,7 @@
 import Hero from '../components/sections/Hero'; // Top-of-page intro section with animated background and CTA
 import About from '../components/sections/About'; // About Me section with MDX and timeline
 import Experience from '../components/sections/Experience';
+import Projects from '@/components/sections/Projects'; 
 
 export default function Home() {
   console.log('Hero default export typeof =', typeof Hero);
@@ -24,12 +25,8 @@ export default function Home() {
       {/* EXPERIENCE SECTION */}
       <Experience />
 
-      {/* 
-        SECTION PLACEHOLDERS 
-        - These represent the high-level structure of the site
-        - Each will be built as a separate feature branch (e.g., feat/about, feat/projects)
-        - Using min-height ensures we can design full-screen scrollable panels later
-      */}
+      {/* PROJECTS */}
+      <Projects />   
 
 
       {/* Projects Section: Will contain dynamic cards with hover interactions and modals */}
