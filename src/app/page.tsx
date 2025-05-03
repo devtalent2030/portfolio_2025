@@ -2,6 +2,7 @@ import Hero from '../components/sections/Hero'; // Top-of-page intro section wit
 import About from '../components/sections/About'; // About Me section with MDX and timeline
 import Experience from '../components/sections/Experience';
 import Projects from '@/components/sections/Projects'; 
+import Skills from '@/components/sections/Skills';
 
 export default function Home() {
   console.log('Hero default export typeof =', typeof Hero);
@@ -28,7 +29,7 @@ export default function Home() {
       {/* PROJECTS */}
       <Projects />   
 
-
+      <Skills />  
       {/* Projects Section: Will contain dynamic cards with hover interactions and modals */}
       <section id="projects" className="min-h-[80vh]" />
 
