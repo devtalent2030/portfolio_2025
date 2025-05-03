@@ -34,7 +34,7 @@ export default function About() {
         </Link>
 
         {/* Quick facts list */}
-        <ul className="mt-6 space-y-2 text-sm text-gray-300">
+        <ul className="mt-6 space-y-2 text-sm text-skin-muted">
           <li>📍 Based in Toronto, Canada</li>
           <li>💻 3+ years coding experience</li>
           <li>🗣️ Fluent in English & French</li>
@@ -47,7 +47,7 @@ export default function About() {
       {/* -------------------------------------------------- */}
       <div className="flex-1">
         {/* Concise professional introduction from MDX */}
-        <div className="prose prose-invert max-w-none text-gray-300">
+        <div className="prose prose-invert max-w-none text-skin-muted">
           <AboutContent />
         </div>
 
@@ -56,6 +56,7 @@ export default function About() {
 
         {/* Timeline component */}
         <CareerTimeline
+          accentColor="purple"
           items={[
             { year: 2025, title: 'Graduated – Advanced Diploma in Computer Programming' },
             { year: 2025, title: 'MLC Studio Placement – AI in Unity' },
