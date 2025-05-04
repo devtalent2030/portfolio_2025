@@ -3,6 +3,7 @@ import About from '../components/sections/About'; // About Me section with MDX a
 import Experience from '../components/sections/Experience';
 import Projects from '@/components/sections/Projects'; 
 import Skills from '@/components/sections/Skills';
+import Testimonials from '@/components/sections/Testimonials';
 
 export default function Home() {
   console.log('Hero default export typeof =', typeof Hero);
@@ -29,12 +30,10 @@ export default function Home() {
       {/* PROJECTS */}
       <Projects />   
 
-      <Skills />  
-      {/* Projects Section: Will contain dynamic cards with hover interactions and modals */}
-      <section id="projects" className="min-h-[80vh]" />
+      <Skills /> 
 
-      {/* Contact Section: Final CTA for reaching out, includes form + reCAPTCHA + email API */}
-      <section id="contact" className="min-h-[80vh]" />
+      <Testimonials /> 
+      
     </>
   );
 }
