@@ -3,6 +3,8 @@ import { ReactNode } from 'react';
 import { ThemeProvider } from 'next-themes';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
+import '@fortawesome/fontawesome-free/css/all.min.css';
+
 
 export const metadata = {
   title: 'Talent Nyota – Portfolio',

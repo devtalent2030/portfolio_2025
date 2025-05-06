@@ -6,6 +6,7 @@ import Skills from '@/components/sections/Skills';
 import Testimonials from '@/components/sections/Testimonials';
 
 import BlogPreview from '@/components/sections/BlogPreviewServer';
+import Contact from '@/components/sections/Contact';
 
 
 export default function Home() {
@@ -39,6 +40,8 @@ export default function Home() {
       <BlogPreview />
 
       <Testimonials /> 
+      
+      <Contact />
       
     </>
   );
