@@ -15,7 +15,7 @@
 
 /* Controlled by next-themes 'dark' class */
 html.dark {
-  --background : #0B0F19;
+  --background : #000000;
   --foreground : #E5E7EB;
   --muted      : #9CA3AF;
 }
