@@ -5,6 +5,9 @@ import Projects from '@/components/sections/Projects';
 import Skills from '@/components/sections/Skills';
 import Testimonials from '@/components/sections/Testimonials';
 
+import BlogPreview from '@/components/sections/BlogPreviewServer';
+
+
 export default function Home() {
   console.log('Hero default export typeof =', typeof Hero);
   return (
@@ -31,6 +34,9 @@ export default function Home() {
       <Projects />   
 
       <Skills /> 
+      {/* BLOG PREVIEW */}
+  
+      <BlogPreview />
 
       <Testimonials /> 
       

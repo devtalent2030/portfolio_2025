@@ -1,0 +1,86 @@
+---
+title: Building a Scalable Microservices Architecture with Node.js & Docker
+summary: Lessons learned containerising 15 services, wiring them with gRPC, and monitoring via Prometheus.
+date: 2025-04-12
+tags: [docker, microservices, node]
+image: /images/blog/microservices-cover.jpg
+---
+
+import CodeBlock from '@/components/ui/CodeBlock';
+
+> **TL;DR** — We broke the monolith, containerised everything, and reduced AWS spend by **38%**.
+
+---
+
+## 1. Docker-Compose Setup
+
+<CodeBlock language="yaml">
+{`version: '3.9'
+services:
+  user:
+    build: ./services/user
+    deploy:
+      replicas: 3
+  api-gateway:
+    build: ./gateway
+    environment:
+      - RATE_LIMIT=100/s`}
+</CodeBlock>
+
+Containerised all 15 services with healthchecks and volume mounts.
+
+---
+
+## 2. gRPC for Communication
+
+<CodeBlock language="ts">
+{`const client = new UserService('localhost:50051', grpc.credentials.createInsecure());
+client.GetUser({ id: 'abc123' }, (err, response) => {
+  console.log(response);
+});`}
+</CodeBlock>
+
+Faster and lighter than REST — with Protobuf type safety.
+
+---
+
+## 3. Optimised CI/CD with GitHub Actions
+
+<CodeBlock language="yaml">
+{`name: CI
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Docker Build
+        run: docker-compose build`}
+</CodeBlock>
+
+Average CI time dropped from **24 min → 9 min**.
+
+---
+
+## 4. Real-World Impact
+
+| Metric                 | Before | After             |
+|------------------------|--------|------------------|
+| CI/CD Pipeline         | 24 min | **9 min ↓62%**   |
+| AWS Cost (per month)   | $420   | **$260 ↓38%**    |
+| Onboarding Time        | 4 days | **1.5 days ↓63%**|
+
+---
+
+## 🔑 Take-aways
+
+1. **Start with Compose**, then scale with K8s or ECS.
+2. gRPC isn't just hype — it slashed payload sizes by 80%.
+3. CI/CD savings = dev happiness = shipping faster.
+4. Containerising monoliths can *actually* reduce complexity.
+
+---
+
+*Want the Compose boilerplate we used? [Shoot me an email](mailto:hello@talent.dev).*

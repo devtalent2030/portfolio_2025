@@ -12,6 +12,7 @@ export default function Navbar() {
         <ul className="hidden gap-6 md:flex">
           <li><Link href="#projects" className="hover:text-surge">Projects</Link></li>
           <li><Link href="#about" className="hover:text-surge">About</Link></li>
+          <li><Link href="/blog" className="hover:text-surge">Blog</Link></li>
           <li><Link href="#contact" className="hover:text-surge">Contact</Link></li>
         </ul>
         <ThemeToggle />

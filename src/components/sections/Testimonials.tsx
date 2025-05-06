@@ -15,18 +15,16 @@ export default function Testimonials() {
       <h2 className="mb-12 text-3xl font-bold text-surge">Testimonials</h2>
 
       <Swiper
+        className="testimonial-swiper" // ✅ Scoped class for fade-specific CSS
         modules={[EffectFade, Autoplay, Pagination]}
         effect="fade"
-        autoplay={{ delay: 6000 }}
+        autoplay={{ delay: 6000, disableOnInteraction: false }}
         loop
         pagination={{ clickable: true }}
         slidesPerView={1}
-        className="rounded-2xl border border-white/10 bg-white/5 p-12 backdrop-blur
-                   dark:bg-black/10"
       >
         {testimonials.map((t) => (
           <SwiperSlide key={t.id}>
-            {/* Center the card */}
             <div className="flex justify-center">
               <TestimonialCard t={t} />
             </div>

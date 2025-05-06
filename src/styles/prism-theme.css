@@ -1,0 +1,11 @@
+/* Prism Light (Coy) — light mode only */
+:global(pre[class*="language-"]),
+:global(code[class*="language-"]) {
+  @import 'prism-themes/themes/prism-coy.css';
+}
+
+/* Prism Dark (Dracula) — when html.dark is present */
+:global(html.dark) pre[class*="language-"],
+:global(html.dark) code[class*="language-"] {
+  @import 'prism-themes/themes/prism-dracula.css';
+}
