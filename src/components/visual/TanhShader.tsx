@@ -36,7 +36,7 @@ const TanhShaderEffect = () => {
   });
 
   return (
-    <mesh>
+    <mesh scale={[3, 3, 1]}>
       <planeGeometry args={[2, 2]} />
       <shaderMaterial
         ref={mat}

@@ -98,13 +98,15 @@ export default function Contact() {
         {error && <p className="text-sm text-red-400">{error}</p>}
 
         <button
-          type="submit"
-          disabled={state === 'submitting' || state === 'success'}
-          className="w-full rounded-lg bg-surge py-3 font-medium text-black
-                     transition hover:scale-105 hover:shadow-lg disabled:opacity-50"
-        >
-          {state === 'submitting' ? 'Sending…' : 'Send Message ↗'}
-        </button>
+  type="submit"
+  disabled={state === 'submitting' || state === 'success'}
+  className="w-full rounded-lg bg-emerald-500 py-3 font-medium text-white
+             transition hover:scale-105 hover:bg-emerald-600 hover:shadow-xl
+             focus:outline-none focus:ring-2 focus:ring-emerald-300 disabled:opacity-50"
+>
+  {state === 'submitting' ? 'Sending…' : 'Send Message ↗'}
+</button>
+
 
         {state === 'success' && (
           <p className="text-sm text-green-400">✓ Message sent — talk soon!</p>
