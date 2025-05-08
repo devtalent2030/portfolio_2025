@@ -46,14 +46,14 @@ export default function Hero() {
   return (
     <section
       id="home"
-      className="relative h-screen flex flex-col items-center justify-center overflow-hidden"
+      className="relative min-h-[100dvh] flex flex-col items-center justify-start overflow-x-hidden overflow-y-auto px-4 pt-32 pb-16 text-white"
     >
       {/* 🎨 Scoped Shader Background */}
       <div className="absolute top-0 left-0 right-0 bottom-0 -z-20 pointer-events-none">
         <TanhShaderCanvas />
       </div>
 
-      {/* 🌀 Layered Motion Blur */}
+      {/* 🌀 Motion Blur Background */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 0.25, scale: 1.3 }}
@@ -61,19 +61,17 @@ export default function Hero() {
         className="absolute inset-0 -z-10 bg-gradient-to-br from-indigo/20 via-surge/30 to-transparent blur-3xl"
       />
 
-      {/* 🧑🏾‍💻 Name + Title */}
-      <h1 className="mb-6 text-center text-5xl font-extrabold tracking-tight lg:text-6xl">
+      {/* 👤 Name + Title */}
+      <h1 className="mb-6 text-center text-4xl font-extrabold tracking-tight sm:text-5xl md:text-6xl">
         <span className="text-surge">Talent Nyota</span>
-        <br />
-        <span className="text-skin-fg"></span>
       </h1>
 
-      {/* 🔍 Subtitle */}
-      <p className="mb-10 max-w-xl text-center text-skin-fg text-lg font-light">
+      {/* 📄 Subtitle */}
+      <p className="mb-10 max-w-xl text-center text-skin-fg text-base font-light sm:text-lg">
         Building performant&nbsp;full-stack experiences with&nbsp;React, TypeScript & cloud.
       </p>
 
-      {/* 🧭 CTA */}
+      {/* 🚀 Call To Action */}
       <Link
         href="#projects"
         className="rounded-lg bg-surge px-6 py-3 font-medium text-black transition hover:scale-105 hover:bg-indigo"
@@ -81,8 +79,8 @@ export default function Hero() {
         View My Work ↓
       </Link>
 
-      {/* 📌 Cards */}
-      <div className="mt-16 flex flex-wrap justify-center gap-6 px-4">
+      {/* 🧱 Cards */}
+      <div className="mt-16 flex flex-wrap justify-center gap-6">
         {cards.map(({ title, copy, Icon, color }, i) => (
           <div
             key={i}

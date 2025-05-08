@@ -1,14 +1,14 @@
-// src/components/sections/BlogPreviewClient.tsx
 'use client';
 
-import { useRef } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Autoplay }          from 'swiper/modules';
+import { Autoplay, Navigation } from 'swiper/modules';
 import type { Swiper as SwiperClass } from 'swiper';
-import Link                  from 'next/link';
-import { FrontMatter }       from '@/lib/parsePost';
+import Link from 'next/link';
+import { FrontMatter } from '@/lib/parsePost';
 
 import 'swiper/css';
+import 'swiper/css/navigation';
 
 export interface PostCard {
   slug: string;
@@ -18,45 +18,70 @@ export interface PostCard {
 
 export default function BlogPreviewClient({ posts }: { posts: PostCard[] }) {
   const swiperRef = useRef<SwiperClass | null>(null);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    // Determine screen width on client
+    setIsMobile(window.innerWidth < 768);
+  }, []);
 
   return (
-    <Swiper
-      modules={[Autoplay]}
-      onSwiper={(s) => (swiperRef.current = s)}
-      autoplay={{
-        delay: 4000,
-        disableOnInteraction: false,
-        pauseOnMouseEnter   : true,
-      }}
-      loop
-      spaceBetween={24}
-      slidesPerView={1}           // mobile = 1
-      breakpoints={{
-        768 : { slidesPerView: 1.5 }, // tablet
-        1024: { slidesPerView: 2   }, // desktop  ➜ now < total slides
-      }}
-      className="!overflow-visible"
-    >
-      {posts.map((p) => (
-        <SwiperSlide key={p.slug} className="pb-2">
-          <Link
-            href={`/blog/${p.slug}`}
-            className="group block h-full rounded-xl border border-white/10
-                       bg-white/5 p-4 transition hover:shadow-lg backdrop-blur
-                       dark:bg-black/10"
-          >
-            <h3 className="mb-1 text-sm font-semibold text-surge group-hover:underline">
-              {p.front.title}
-            </h3>
-            <p className="line-clamp-2 text-xs text-skin-muted">
-              {p.front.summary}
-            </p>
-            <span className="mt-2 inline-block text-[10px] text-indigo">
-              {p.reading}
-            </span>
-          </Link>
-        </SwiperSlide>
-      ))}
-    </Swiper>
+    <div className="relative">
+      <Swiper
+        modules={[Navigation, Autoplay]}
+        onSwiper={(s) => (swiperRef.current = s)}
+        autoplay={
+          !isMobile
+            ? {
+                delay: 4000,
+                disableOnInteraction: false,
+                pauseOnMouseEnter: true,
+              }
+            : false
+        }
+        navigation={{
+          nextEl: '.blog-next-btn',
+          prevEl: '.blog-prev-btn',
+        }}
+        loop
+        initialSlide={0}
+        spaceBetween={24}
+        slidesPerView={1}
+        breakpoints={{
+          768: { slidesPerView: 1.5 },
+          1024: { slidesPerView: 2 },
+        }}
+        className="!overflow-visible"
+      >
+        {posts.map((p) => (
+          <SwiperSlide key={p.slug} className="pb-2">
+            <Link
+              href={`/blog/${p.slug}`}
+              className="group block h-full rounded-xl border border-white/10
+                         bg-white/5 p-4 transition hover:shadow-lg backdrop-blur
+                         dark:bg-black/10"
+            >
+              <h3 className="mb-1 text-sm font-semibold text-surge group-hover:underline">
+                {p.front.title}
+              </h3>
+              <p className="line-clamp-2 text-xs text-skin-muted">
+                {p.front.summary}
+              </p>
+              <span className="mt-2 inline-block text-[10px] text-indigo">
+                {p.reading}
+              </span>
+            </Link>
+          </SwiperSlide>
+        ))}
+      </Swiper>
+
+      {/* ⬅️ Prev + ➡️ Next Arrows */}
+      <div className="absolute left-0 top-1/2 -translate-y-1/2 z-10">
+        <button className="blog-prev-btn text-white text-xl px-2">←</button>
+      </div>
+      <div className="absolute right-0 top-1/2 -translate-y-1/2 z-10">
+        <button className="blog-next-btn text-white text-xl px-2">→</button>
+      </div>
+    </div>
   );
 }
