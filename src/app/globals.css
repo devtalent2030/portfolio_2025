@@ -10,15 +10,15 @@
   --muted      : #9CA3AF;
 
 
-  --accent       : #a4a7a6;        /* Surge Green */
-  --accent-hover : rgba(0, 255, 163, 0.005); /* 🟢 Softened for light mode */
+  --accent       : #96a8a1;        /* Surge Green */
+  --accent-hover : rgba(5, 29, 21, 0.672); /* 🟢 Softened for light mode */
 }
 
 /* Controlled by next-themes 'dark' class */
 html.dark {
   --background : #F7F9FC;
   --foreground : #111827;
-  --muted      : #6B7280;
+  --muted      : #000000;
 }
 
 /* === Global Resets ============================================= */

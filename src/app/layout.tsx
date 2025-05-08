@@ -10,6 +10,9 @@ import Loader from '@/components/ui/Loader';
 export const metadata = {
   title: 'Talent Nyota – Portfolio',
   description: 'Software Engineer | Full-Stack & Cloud',
+  icons: {
+    icon: '/logo4012.png', // Must be square (e.g. 64x64 or 512x512)
+  },
 };
 
 export default function RootLayout({ children }: { children: ReactNode }) {
