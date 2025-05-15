@@ -18,12 +18,15 @@ export interface PostCard {
 
 export default function BlogPreviewClient({ posts }: { posts: PostCard[] }) {
   const swiperRef = useRef<SwiperClass | null>(null);
-  const [isMobile, setIsMobile] = useState(false);
+  const [isMobile, setIsMobile] = useState<null | boolean>(null);
 
   useEffect(() => {
-    // Determine screen width on client
-    setIsMobile(window.innerWidth < 768);
+    if (typeof window !== 'undefined') {
+      setIsMobile(window.innerWidth < 768);
+    }
   }, []);
+
+  if (isMobile === null) return null;
 
   return (
     <div className="relative">
@@ -45,6 +48,7 @@ export default function BlogPreviewClient({ posts }: { posts: PostCard[] }) {
         }}
         loop
         initialSlide={0}
+        allowTouchMove={false} // ✅ disables swiping on all devices
         spaceBetween={24}
         slidesPerView={1}
         breakpoints={{
@@ -75,12 +79,16 @@ export default function BlogPreviewClient({ posts }: { posts: PostCard[] }) {
         ))}
       </Swiper>
 
-      {/* ⬅️ Prev + ➡️ Next Arrows */}
+      {/* 🔼 Navigation Arrows */}
       <div className="absolute left-0 top-1/2 -translate-y-1/2 z-10">
-        <button className="blog-prev-btn text-white text-xl px-2">←</button>
+        <button className="blog-prev-btn text-white text-3xl font-bold px-4 py-2 bg-black/50 rounded-full shadow-md hover:bg-white/20 transition">
+          ←
+        </button>
       </div>
       <div className="absolute right-0 top-1/2 -translate-y-1/2 z-10">
-        <button className="blog-next-btn text-white text-xl px-2">→</button>
+        <button className="blog-next-btn text-white text-3xl font-bold px-4 py-2 bg-black/50 rounded-full shadow-md hover:bg-white/20 transition">
+          →
+        </button>
       </div>
     </div>
   );
