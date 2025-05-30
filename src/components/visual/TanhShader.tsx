@@ -2,6 +2,7 @@
 import React, { useRef } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
 import * as THREE from 'three';
+import { useInView } from 'react-intersection-observer'; // ✅ Correct package
 
 /* ── GLSL ─────────────────────────────────────────────── */
 const vertexShader = `
@@ -20,9 +21,9 @@ const fragmentShader = `
   float wave  (float x, float t ) { return sin(8.0*x + 2.0*t)*0.2 + sin(4.0*x + 1.5*t)*0.1; }
 
   void main() {
-    vec2  p   = (vUv - 0.5) * 2.0;          // −1 → 1 space
-    float d   = wave(p.x, u_time);          // wavy distortion
-    float col = tanhFn(p.y + d, 3.5);       // smooth tanh
+    vec2  p   = (vUv - 0.5) * 2.0;
+    float d   = wave(p.x, u_time);
+    float col = tanhFn(p.y + d, 3.5);
     gl_FragColor = vec4(vec3(0.4 + 0.6*col), 1.0);
   }
 `;
@@ -32,7 +33,9 @@ const TanhShaderEffect = () => {
   const mat = useRef<THREE.ShaderMaterial>(null);
 
   useFrame(({ clock }) => {
-    mat.current!.uniforms.u_time.value = clock.getElapsedTime();
+    if (mat.current) {
+      mat.current.uniforms.u_time.value = clock.getElapsedTime();
+    }
   });
 
   return (
@@ -48,14 +51,25 @@ const TanhShaderEffect = () => {
   );
 };
 
-/*  Canvas **scoped to parent** (absolute, not fixed)  */
-const TanhShaderCanvas = () => (
-  <Canvas
-    className="absolute inset-0 w-full h-full pointer-events-none" /* ⬅️ scoped */
-    camera={{ position: [0, 0, 1] }}
-  >
-    <TanhShaderEffect />
-  </Canvas>
-);
+/* 🧠 Performance-Scoped Canvas */
+const TanhShaderCanvas = () => {
+  const { ref, inView } = useInView({
+    rootMargin: '0px',
+    threshold: 0,
+    triggerOnce: false,
+  });
+
+  return (
+    <div ref={ref} className="absolute inset-0 w-full h-full pointer-events-none">
+      <Canvas
+        frameloop={inView ? 'always' : 'never'} // ✅ GPU off when hidden
+        dpr={[1, 1.5]}
+        camera={{ position: [0, 0, 1] }}
+      >
+        <TanhShaderEffect />
+      </Canvas>
+    </div>
+  );
+};
 
 export default TanhShaderCanvas;
