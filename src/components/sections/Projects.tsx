@@ -77,6 +77,11 @@ const projects: ProjectMeta[] = [
   },
 ];
 
+// 🔳 Glass wrapper style for all 6 cards
+const glass =
+  'rounded-3xl p-8 backdrop-blur-md ring-1 ring-white/10 shadow-xl ' +
+  'bg-[url("/images/card444.png")] bg-cover bg-center bg-white/5';
+
 export default function Projects() {
   const [openProject, setOpenProject] = useState<ProjectMeta | null>(null);
 
@@ -84,38 +89,41 @@ export default function Projects() {
     <section id="projects" className="mx-auto max-w-6xl px-4 py-32">
       <h2 className="mb-12 text-3xl font-bold text-surge">Featured Projects</h2>
 
-      <motion.div
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true }}
-        variants={{
-          hidden: { opacity: 0, y: 40 },
-          visible: {
-            opacity: 1,
-            y: 0,
-            transition: { staggerChildren: 0.15 },
-          },
-        }}
-        className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3"
-      >
-        {projects.map((p) => (
-          <motion.div
-            key={p.slug}
-            variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}
-          >
-            <ProjectCard
-              title={p.title}
-              description={p.shortDescription}
-              tech={p.tech}
-              image={p.image}
-              repo={p.repo}
-              onClick={() => setOpenProject(p)}
-            />
-          </motion.div>
-        ))}
-      </motion.div>
+      {/* 🔳 Wrap all cards in a single glass-morphism container */}
+      <div className={glass}>
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          variants={{
+            hidden: { opacity: 0, y: 40 },
+            visible: {
+              opacity: 1,
+              y: 0,
+              transition: { staggerChildren: 0.15 },
+            },
+          }}
+          className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3"
+        >
+          {projects.map((p) => (
+            <motion.div
+              key={p.slug}
+              variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}
+            >
+              <ProjectCard
+                title={p.title}
+                description={p.shortDescription}
+                tech={p.tech}
+                image={p.image}
+                repo={p.repo}
+                onClick={() => setOpenProject(p)}
+              />
+            </motion.div>
+          ))}
+        </motion.div>
+      </div>
 
-      {/* Optional Modal */}
+      {/* 🔲 Modal remains unchanged */}
       {openProject && (
         <div className="fixed inset-0 z-50 bg-black/80 p-8 text-white">
           <button
