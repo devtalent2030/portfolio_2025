@@ -24,24 +24,25 @@ type Card = {
 
 const cards: Card[] = [
   {
-    title: 'AI‑Driven Resume Screening',
-    copy: 'LLM pipeline (LangChain + Pinecone) ranks 1k CVs in < 2 s.',
-    color: 'from-indigo-500/30 via-indigo-500/10 to-transparent',
-    Icon: ShieldCheckIcon,
+    title: 'AI-Driven Resume Screening',
+    copy:  'LLM pipeline (LangChain + Pinecone) ranks 1k CVs in < 2 s.',
+    color: 'from-black/30 via-black/10 to-transparent',   // ⬅️ black gradient
+    Icon:  ShieldCheckIcon,
   },
   {
-    title: 'SecuriScan – Vuln Scanner',
-    copy: '36 h hackathon MVP → real‑time OWASP‑10 dashboard w/ WebSockets.',
-    color: 'from-emerald-500/30 via-emerald-500/10 to-transparent',
-    Icon: ExclamationTriangleIcon,
+    title: 'SecuriScan – Vuln Scanner',
+    copy:  '36 h hackathon MVP → real-time OWASP-10 dashboard w/ WebSockets.',
+    color: 'from-black/30 via-black/10 to-transparent',   // ⬅️ black gradient
+    Icon:  ExclamationTriangleIcon,
   },
   {
-    title: 'Realtime DevOps Insights',
-    copy: 'Grafana‑style board streams Prometheus metrics over Docker Swarm.',
-    color: 'from-amber-500/30 via-amber-500/10 to-transparent',
-    Icon: ClipboardDocumentCheckIcon,
+    title: 'Realtime DevOps Insights',
+    copy:  'Grafana-style board streams Prometheus metrics over Docker Swarm.',
+    color: 'from-black/30 via-black/10 to-transparent',   // ⬅️ black gradient
+    Icon:  ClipboardDocumentCheckIcon,
   },
 ];
+
 
 export default function Hero() {
   const sectionRef = useRef(null);

@@ -43,7 +43,10 @@ export default function About() {
         </Link>
 
         {/* Quick facts */}
-        <ul className="mt-6 space-y-2 text-sm text-white/80">
+        <ul className="mt-6 space-y-2 text-sm text-skin-fg">
+          <li>About Me</li>
+          <> I’m  Talent , a Toronto-based software engineer passionate about  
+            building fast, accessible, and delightful products.</>
           <li>📍 Based in Toronto, Canada</li>
           <li>💻 3+ years coding experience</li>
           <li>🗣️ Fluent in English & French</li>
@@ -55,7 +58,7 @@ export default function About() {
       <div className={`${cardClasses} flex-1 p-8`}>
         {/* Intro */}
         <div className="prose prose-invert max-w-none text-white/90">
-          <AboutContent />
+         
         </div>
 
         {/* Timeline */}

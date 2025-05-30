@@ -31,17 +31,17 @@ export default function Experience() {
               />
 
               <div>
-                <div className="font-semibold text-white">
+                <div className="font-semibold text-skin-fg">
                   {item.title} • {item.company}
                 </div>
-                <div className="text-sm text-white/70">
+                <div className="text-sm text-skin-muted">
                   {item.start} – {item.end} • {item.location}
                 </div>
               </div>
             </div>
 
             {/* Bullets */}
-            <ul className="mt-4 space-y-2 text-white/90">
+            <ul className="mt-4 space-y-2 text-skin-fg">
               {item.bullets
                 .slice(0, openId === item.id ? undefined : 2)
                 .map((b) => (
@@ -61,7 +61,7 @@ export default function Experience() {
 
             {/* Optional quote */}
             {item.quote && openId === item.id && (
-              <blockquote className="mt-4 border-l-4 border-surge/60 pl-4 italic text-white/70">
+              <blockquote className="mt-4 border-l-4 border-surge/60 pl-4 italic text-skin-muted">
                 “{item.quote.text}” – {item.quote.author}, {item.quote.role}
               </blockquote>
             )}

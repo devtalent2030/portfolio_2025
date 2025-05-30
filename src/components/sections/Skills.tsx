@@ -11,7 +11,6 @@ type Skill = {
   note?: string;
 };
 
-/* ─ Sample data — extend freely ─ */
 const skills: Skill[] = [
   { name: 'Python', level: 'Expert', category: 'Programming', note: 'AI Resume Screener' },
   { name: 'C#', level: 'Expert', category: 'Programming', note: 'Unity GPT-4 NPC' },
@@ -45,7 +44,6 @@ const categories: SkillCategory[] = [
   'Soft',
 ];
 
-/* ─ Glass-card style pulled from card444.png ─ */
 const glass =
   'rounded-3xl p-8 backdrop-blur-md ring-1 ring-white/10 shadow-xl ' +
   'bg-[url("/images/card444.png")] bg-cover bg-center bg-white/5';
@@ -66,12 +64,12 @@ export default function Skills() {
             <button
               key={cat}
               onClick={() => setActive(cat)}
-              className={`rounded-full px-4 py-1 text-xs font-medium transition
-                          ${
-                            active === cat
-                              ? 'bg-surge text-black'
-                              : 'bg-white/10 text-white/80 hover:bg-white/20'
-                          }`}
+              className={`rounded-full px-4 py-1 text-xs font-semibold tracking-wide transition
+                ${
+                  active === cat
+                    ? 'bg-surge text-black'
+                    : 'bg-transparent text-skin-fg hover:bg-skin-muted/10 hover:ring-1 hover:ring-surge hover:scale-105'
+                }`}
             >
               {cat}
             </button>

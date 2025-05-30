@@ -7,7 +7,7 @@ export default function Footer() {
 
   return (
     <footer className="mt-32 bg-black/80 text-skin-muted backdrop-blur">
-      {/* ── Call‑to‑Action Strip ─────────────────────────── */}
+      {/* ── Call-to-Action Strip ─────────────────────────── */}
       <div className="border-b border-white/10 bg-gradient-to-r from-surge/20 via-indigo/20 to-transparent p-8 text-center sm:flex sm:items-center sm:justify-between">
         <h3 className="mb-4 text-lg font-semibold tracking-tight text-white sm:mb-0">
           Ready to ship something exceptional?
@@ -16,35 +16,41 @@ export default function Footer() {
           href="#contact"
           className="inline-block rounded-lg bg-surge px-6 py-3 text-sm font-medium text-black transition hover:scale-105 hover:bg-indigo"
         >
-          Let’s Talk ↗
+          Let’s Talk ↗
         </Link>
       </div>
 
       {/* ── Link Columns ────────────────────────────────── */}
       <div className="mx-auto grid max-w-6xl gap-8 px-6 py-16 sm:grid-cols-3">
-        {/* ① Navigation */}
-        <div>
-          <h4 className="mb-3 text-sm font-semibold text-white">Navigation</h4>
-          <ul className="space-y-2 text-sm">
-            <li><Link href="/"        className="hover:text-white">Home</Link></li>
-            <li><Link href="#projects" className="hover:text-white">Projects</Link></li>
-            <li><Link href="/blog"     className="hover:text-white">Blog</Link></li>
-            <li><Link href="#contact"  className="hover:text-white">Contact</Link></li>
-          </ul>
+        {/* ── Navigation + Tooling wrapped together in one card ── */}
+        <div className="sm:col-span-2">
+          <div className="p-8 backdrop-blur-md ring-1 ring-white/10 shadow-xl
+                          bg-[url('/images/card911.png')] bg-cover bg-center grid gap-8 sm:grid-cols-2">
+            {/* ① Navigation */}
+            <div>
+              <h4 className="mb-3 text-sm font-semibold text-white">Navigation</h4>
+              <ul className="space-y-2 text-sm">
+                <li><Link href="/"        className="hover:text-white">Home</Link></li>
+                <li><Link href="#projects" className="hover:text-white">Projects</Link></li>
+                <li><Link href="/blog"     className="hover:text-white">Blog</Link></li>
+                <li><Link href="#contact"  className="hover:text-white">Contact</Link></li>
+              </ul>
+            </div>
+
+            {/* ② Tech Tooling */}
+            <div>
+              <h4 className="mb-3 text-sm font-semibold text-white">Tooling</h4>
+              <ul className="space-y-2 text-sm">
+                <li>Next.js 14 + App Router</li>
+                <li>TypeScript 5 · Tailwind CSS</li>
+                <li>Resend & reCAPTCHA v3</li>
+                <li>AWS · Docker · Three.js</li>
+              </ul>
+            </div>
+          </div>
         </div>
 
-        {/* ② Tech Tooling */}
-        <div>
-          <h4 className="mb-3 text-sm font-semibold text-white">Tooling</h4>
-          <ul className="space-y-2 text-sm">
-            <li>Next.js 14 + App Router</li>
-            <li>TypeScript 5 · Tailwind CSS</li>
-            <li>Resend & reCAPTCHA v3</li>
-            <li>AWS · Docker · Three.js</li>
-          </ul>
-        </div>
-
-        {/* ③ Social */}
+        {/* ③ Social (unchanged) */}
         <div>
           <h4 className="mb-3 text-sm font-semibold text-white">Social</h4>
           <ul className="flex gap-6 text-2xl">
@@ -83,8 +89,8 @@ export default function Footer() {
 
       {/* ── Bottom Bar ─────────────────────────────────── */}
       <div className="border-t border-white/10 py-6 text-center text-xs">
-        © {year} Talent Nyota · Crafted with&nbsp;
-        <span className="text-surge">Next.js & Tailwind CSS</span>
+        © {year} Talent Nyota · Crafted with&nbsp;
+        <span className="text-surge">Next.js & Tailwind CSS</span>
       </div>
     </footer>
   );

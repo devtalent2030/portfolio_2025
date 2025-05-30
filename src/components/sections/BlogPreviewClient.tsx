@@ -2,7 +2,7 @@
 
 import { useEffect, useState, useRef } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Autoplay, Navigation } from 'swiper/modules';
+import { Navigation } from 'swiper/modules';            // ⬅️ Autoplay removed
 import type { Swiper as SwiperClass } from 'swiper';
 import Link from 'next/link';
 import { FrontMatter } from '@/lib/parsePost';
@@ -16,19 +16,17 @@ export interface PostCard {
   front: Pick<FrontMatter, 'title' | 'summary'>;
 }
 
-// 💎 Glass-card wrapper
 const glass =
   'rounded-3xl p-8 backdrop-blur-md ring-1 ring-white/10 shadow-xl ' +
-  'bg-[url("/images/card444.png")] bg-cover bg-center bg-white/5';
+  'bg-[url("/images/card444.png")] bg-cover bg-center bg-white/5 ' +
+  'overflow-hidden';                                      // ⬅️ prevents sideways scroll
 
 export default function BlogPreviewClient({ posts }: { posts: PostCard[] }) {
   const swiperRef = useRef<SwiperClass | null>(null);
-  const [isMobile, setIsMobile] = useState<null | boolean>(null);
+  const [isMobile, setIsMobile] = useState<boolean | null>(null);
 
   useEffect(() => {
-    if (typeof window !== 'undefined') {
-      setIsMobile(window.innerWidth < 768);
-    }
+    setIsMobile(window.innerWidth < 768);
   }, []);
 
   if (isMobile === null) return null;
@@ -37,30 +35,17 @@ export default function BlogPreviewClient({ posts }: { posts: PostCard[] }) {
     <div className={glass}>
       <div className="relative">
         <Swiper
-          modules={[Navigation, Autoplay]}
+          modules={[Navigation]}                         /* ⬅️ Autoplay removed */
           onSwiper={(s) => (swiperRef.current = s)}
-          autoplay={
-            !isMobile
-              ? {
-                  delay: 4000,
-                  disableOnInteraction: false,
-                  pauseOnMouseEnter: true,
-                }
-              : false
-          }
           navigation={{
             nextEl: '.blog-next-btn',
             prevEl: '.blog-prev-btn',
           }}
-          loop
-          initialSlide={0}
+          loop={false}                                   /* ⬅️ looping disabled */
           allowTouchMove={false}
           spaceBetween={24}
           slidesPerView={1}
-          breakpoints={{
-            768: { slidesPerView: 1.5 },
-            1024: { slidesPerView: 2 },
-          }}
+          breakpoints={{ 1024: { slidesPerView: 2 }}}    /* ⬅️ 1 → 2 on desktop */
           className="!overflow-visible"
         >
           {posts.map((p) => (
@@ -84,16 +69,12 @@ export default function BlogPreviewClient({ posts }: { posts: PostCard[] }) {
         </Swiper>
 
         {/* Navigation Arrows */}
-        <div className="absolute left-0 top-1/2 -translate-y-1/2 z-10">
-          <button className="blog-prev-btn text-white text-3xl font-bold px-4 py-2 bg-black/50 rounded-full shadow-md hover:bg-white/20 transition">
-            ←
-          </button>
-        </div>
-        <div className="absolute right-0 top-1/2 -translate-y-1/2 z-10">
-          <button className="blog-next-btn text-white text-3xl font-bold px-4 py-2 bg-black/50 rounded-full shadow-md hover:bg-white/20 transition">
-            →
-          </button>
-        </div>
+        <button className="blog-prev-btn absolute left-0 top-1/2 z-10 -translate-y-1/2 rounded-full bg-black/50 px-4 py-2 text-3xl font-bold text-white shadow-md transition hover:bg-white/20">
+          ←
+        </button>
+        <button className="blog-next-btn absolute right-0 top-1/2 z-10 -translate-y-1/2 rounded-full bg-black/50 px-4 py-2 text-3xl font-bold text-white shadow-md transition hover:bg-white/20">
+          →
+        </button>
       </div>
     </div>
   );
