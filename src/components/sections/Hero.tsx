@@ -85,6 +85,7 @@ export default function Hero() {
         aria-hidden
       />
 
+
       {/* 👤 Name + Title */}
       <h1 className="mb-6 text-center text-4xl font-extrabold tracking-tight sm:text-5xl md:text-6xl">
         <span className="text-surge">Talent Nyota</span>
