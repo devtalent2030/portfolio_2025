@@ -1,0 +1,105 @@
+#cloud {
+  width: 175px;
+  height: 60px;
+  background: #f2f9fe;
+  background: linear-gradient(#f2f9fe 5%, #d6f0fd 100%);
+  border-radius: 50px;
+  margin: 24px auto 0;
+  animation:
+    cloud-bounce 2.5s infinite ease-in-out,
+    cloudColorChange 6s linear infinite;
+}
+
+
+#cloud:after, #cloud:before {
+  content: "";
+  position: absolute;
+  background: #f2f9fe;
+  z-index: -1;
+  animation:  cloudInnerColor 6s linear infinite;
+}
+
+#cloud:after {
+  width: 50px;
+  height: 50px;
+  top: -25px;
+  left: 30px;
+  border-radius: 50px;
+}
+
+#cloud:before {
+  width: 80px;
+  height: 80px;
+  top: -40px;
+  right: 25px;
+  border-radius: 80px;
+}
+
+.shadow {
+  width: 100px;
+  position: absolute;
+  bottom: -10px;
+  left: 20px;
+  background: #000;
+  z-index: -1;
+  box-shadow: 0 0 15px 3px rgba(0,0,0,0.3);
+  border-radius: 50%;
+  opacity: 0.2;
+}
+
+@keyframes cloud-bounce {
+  0%, 100% { transform: translateY(0);}
+  20%     { transform: translateY(-6px);}
+  50%     { transform: translateY(0);}
+  70%     { transform: translateY(5px);}
+}
+
+
+@keyframes cloudColorChange {
+  0% {
+    background: linear-gradient(#f2f9fe 5%, #b3c6e0 100%);   /* cool blue */
+  }
+  16% {
+    background: linear-gradient(#f2f9fe 5%, #bcd0db 100%);   /* blue-grey */
+  }
+  32% {
+    background: linear-gradient(#f2f9fe 5%, #dbeafe 100%);   /* sky blue */
+  }
+  48% {
+    background: linear-gradient(#f2f9fe 5%, #c9d1d9 100%);   /* misty blue-grey */
+  }
+  64% {
+    background: linear-gradient(#f2f9fe 5%, #e0e7ef 100%);   /* pale blue-grey */
+  }
+  80% {
+    background: linear-gradient(#f2f9fe 5%, #f1f5f9 100%);   /* near-white */
+  }
+  100% {
+    background: linear-gradient(#f2f9fe 5%, #b3c6e0 100%);
+  }
+}
+
+
+@keyframes cloudInnerColor {
+  0% {
+    background: linear-gradient(#f2f9fe 5%, #b3c6e0 100%);   /* cool blue */
+  }
+  16% {
+    background: linear-gradient(#f2f9fe 5%, #bcd0db 100%);   /* blue-grey */
+  }
+  32% {
+    background: linear-gradient(#f2f9fe 5%, #dbeafe 100%);   /* sky blue */
+  }
+  48% {
+    background: linear-gradient(#f2f9fe 5%, #c9d1d9 100%);   /* misty blue-grey */
+  }
+  64% {
+    background: linear-gradient(#f2f9fe 5%, #e0e7ef 100%);   /* pale blue-grey */
+  }
+  80% {
+    background: linear-gradient(#f2f9fe 5%, #f1f5f9 100%);   /* near-white */
+  }
+  100% {
+    background: linear-gradient(#f2f9fe 5%, #b3c6e0 100%);
+  }
+}

@@ -1,0 +1,38 @@
+/* --------------------------------------------------------------
+   Simple 360° halo: a blurred conic-gradient behind .nav-glow
+   -------------------------------------------------------------- */
+
+.nav-glow {
+  position: relative; /* needed so the ::before sits behind */
+}
+
+.nav-glow::before {
+  content: '';
+  position: absolute;
+  inset: -6px;               /* expand 6px around the card */
+  border-radius: inherit;    /* match rounded-2xl */
+  /* --------------------------------------------------
+     FULL RING (not a wedge) via four 90° stops:
+     - #38bdf8 (sky-400) 
+     - #facc15 (yellow-400) 
+     - #f472b6 (pink-400) 
+     - back to #38bdf8 
+     -------------------------------------------------- */
+  --angle: 0deg;
+  background: conic-gradient(
+    from var(--angle),
+    #38bdf8 0deg 90deg,
+    #facc15 90deg 180deg,
+    #f472b6 180deg 270deg,
+    #38bdf8 270deg 360deg
+  );
+  filter: blur(12px);        /* soften into a glow */
+  opacity: 0.7;              /* adjust to taste */
+
+  animation: halo-spin 8s linear infinite;
+  z-index: -1;               /* sit behind the card */
+}
+
+@keyframes halo-spin {
+  to { --angle: 360deg; }
+}

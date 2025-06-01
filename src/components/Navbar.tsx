@@ -4,12 +4,12 @@ import Link from 'next/link';
 import ThemeToggle from './ThemeToggle';
 import { useState } from 'react';
 import { Menu, X } from 'lucide-react';
+import './NavbarGlow.css';          /* ← NEW */
 
-/* 💎 Glass style for desktop link capsule */
 const linkCard =
-  'rounded-2xl backdrop-blur-md ring-1 ring-white/10 shadow-lg ' +
+  'relative rounded-2xl backdrop-blur-md ring-1 ring-white/10 shadow-lg ' +
   'bg-[url("/images/card1718.png")] bg-cover bg-center bg-white/10 ' +
-  'px-6 py-2 flex items-center gap-6';
+  'px-6 py-2 flex items-center gap-6 uppercase tracking-wide';
 
 export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -26,14 +26,14 @@ export default function Navbar() {
           />
         </Link>
 
-        {/* 🖥️ Desktop Links inside glass card */}
+        {/* 🖥️ Desktop Links in glowing card */}
         <div className="hidden md:block">
-          <div className={linkCard}>
+          <div className={`${linkCard} nav-glow`}>
             {['projects', 'about', 'blog', 'contact'].map((slug) => (
               <Link
                 key={slug}
                 href={slug === 'blog' ? '/blog' : `#${slug}`}
-                className="font-bold tracking-wide uppercase text-sm transition hover:text-surge"
+                className="font-bold text-sm transition hover:text-surge"
               >
                 {slug}
               </Link>
@@ -41,7 +41,7 @@ export default function Navbar() {
           </div>
         </div>
 
-        {/* Theme toggle + mobile menu button */}
+        {/* Toggle + Mobile button */}
         <div className="flex items-center gap-3">
           <div className="hidden md:block">
             <ThemeToggle />
@@ -75,7 +75,7 @@ export default function Navbar() {
               key={slug}
               href={slug === 'blog' ? '/blog' : `#${slug}`}
               onClick={() => setMobileOpen(false)}
-              className="font-bold tracking-wide uppercase text-lg transition hover:text-surge"
+              className="font-bold uppercase text-lg transition hover:text-surge"
             >
               {slug}
             </Link>
