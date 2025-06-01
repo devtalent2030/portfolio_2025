@@ -1,46 +1,70 @@
 'use client';
 
 import Link from 'next/link';
-import { motion } from 'framer-motion';
+import { motion, useInView } from 'framer-motion';
+import { useRef } from 'react';
+import LandingLightning from './LandingLightning';
 
 export default function Footer() {
   const year = new Date().getFullYear();
+  const footerRef = useRef(null);
+  const isInView = useInView(footerRef, { once: true, margin: '-100px' });
 
   return (
-    <footer className="mt-32 bg-black/80 text-skin-muted backdrop-blur">
+    <footer
+      ref={footerRef}
+      className="relative mt-32 bg-black/80 text-skin-muted backdrop-blur overflow-hidden"
+    >
       {/* ── Call-to-Action Strip ────────────────────────── */}
-      <div className="border-b border-white/10 bg-gradient-to-r from-surge/20 via-indigo/20 to-transparent p-8 text-center sm:flex sm:items-center sm:justify-between">
+      <div className="relative z-20 border-b border-white/10 bg-gradient-to-r from-surge/20 via-indigo/20 to-transparent p-8 text-center sm:flex sm:items-center sm:justify-between">
         <h3 className="mb-4 text-lg font-semibold tracking-tight text-white sm:mb-0">
           Ready to ship something exceptional?
         </h3>
 
-        {/* 🔥 Animated CTA */}
-        <motion.div
-          animate={{
-            y: [0, -6, 0],
-            backgroundColor: [
-              'var(--accent)',   // surge green
-              '#facc15',         // yellow-400
-              '#38bdf8',         // sky-400
-              '#f472b6',         // pink-400
-              'var(--accent)',
-            ],
-          }}
-          transition={{
-            duration: 6,
-            repeat: Infinity,
-            ease: 'easeInOut',
-          }}
-          className="inline-block rounded-lg shadow-lg"
-        >
-          <Link
-            href="#contact"
-            className="block px-6 py-3 text-sm font-bold text-black
-                       transition hover:scale-110"
+        {/* 💡 Button + Lightning */}
+        <div className="relative inline-block z-30">
+          <motion.div
+            animate={{
+              y: isInView ? [0, -6, 0] : 0,
+              backgroundColor: isInView
+  ? [
+      'var(--accent)',     // surge
+      '#facc15',           // yellow
+      '#38bdf8',           // blue 1
+      '#38bdf8',           // blue 2
+      '#38bdf8',           // blue 3
+      '#38bdf8',           // blue 4
+      '#38bdf8',           // blue 5
+      '#f472b6',           // pink
+      'var(--accent)',     // surge again
+    ]
+  : undefined,
+
+            }}
+            transition={{
+              duration: 6,
+              repeat: Infinity,
+              ease: 'easeInOut',
+            }}
+            className="rounded-lg shadow-lg relative z-30"
           >
-            Let’s Talk ↗
-          </Link>
-        </motion.div>
+            <Link
+              href="#contact"
+              className="block px-6 py-3 text-sm font-bold text-black transition hover:scale-110"
+            >
+              Let’s Talk ↗
+            </Link>
+          </motion.div>
+
+          {/* ⚡ Lightning (near button) */}
+        {isInView && (
+           <div className="absolute -top-8 -left-24 w-[200px] pointer-events-none">
+              <LandingLightning />
+           </div>
+           )}
+
+
+        </div>
       </div>
 
       {/* ── Link Columns ───────────────────────────────── */}
@@ -53,17 +77,17 @@ export default function Footer() {
             <div>
               <h4 className="mb-3 text-sm font-semibold text-white">Navigation</h4>
               <ul className="space-y-2 text-sm">
-                <li><Link href="/"        className="hover:text-white">Home</Link></li>
-                <li><Link href="#projects" className="hover:text-white">Projects</Link></li>
-                <li><Link href="/blog"     className="hover:text-white">Blog</Link></li>
-                <li><Link href="#contact"  className="hover:text-white">Contact</Link></li>
+                <li><Link href="/"        className="font-bold hover:text-white">Home</Link></li>
+                <li><Link href="#projects" className="font-bold hover:text-white">Projects</Link></li>
+                <li><Link href="/blog"     className="font-bold hover:text-white">Blog</Link></li>
+                <li><Link href="#contact"  className="font-bold hover:text-white">Contact</Link></li>
               </ul>
             </div>
 
             {/* ② Tech Tooling */}
             <div>
               <h4 className="mb-3 text-sm font-semibold text-white">Tooling</h4>
-              <ul className="space-y-2 text-sm">
+              <ul className="space-y-2 text-sm font-bold">
                 <li>Next.js 14 + App Router</li>
                 <li>TypeScript 5 · Tailwind CSS</li>
                 <li>Resend & reCAPTCHA v3</li>
@@ -75,7 +99,6 @@ export default function Footer() {
 
         {/* ③ Social */}
         <div>
-          <h4 className="mb-3 text-sm font-semibold text-white">Social</h4>
           <ul className="flex gap-6 text-2xl">
             <li>
               <Link href="https://github.com/devtalent2030" target="_blank" aria-label="GitHub" className="transition hover:text-surge">
@@ -97,9 +120,9 @@ export default function Footer() {
       </div>
 
       {/* ── Bottom Bar ────────────────────────────────── */}
-      <div className="border-t border-white/10 py-6 text-center text-xs">
-        © {year} Talent Nyota · Crafted with 
-        <span className="text-surge">Next.js & Tailwind CSS</span>
+      <div className="border-t border-white/10 py-6 text-center text-xs font-bold text-white/90">
+        © {year} Talent Nyota · Crafted with{' '}
+        <span className="text-surge font-extrabold">Next.js & Tailwind CSS</span>
       </div>
     </footer>
   );
